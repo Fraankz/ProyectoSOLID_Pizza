@@ -29,6 +29,7 @@ Encargada de la conexión a la base de datos en Railway.
 - Método `connect()`: abre la conexión JDBC
 - Método `createOrder(...)`: inserta un nuevo pedido en la tabla `orders`
 - Método `deleteOrder(...)`: elimina un pedido por su ID
+- -Método `listarPedidosPorUsuario(...)`: lista todos los pedidos de un usuario por su ID
 - Proporciona la conexión para otras clases como `Authenticator`
 
 ---
@@ -62,14 +63,5 @@ Simula el procesamiento de pagos.
 - Railway (DBaaS)
 - Maven
 - IntelliJ IDEA
-
----
-
-## 🛠️ Posibles mejoras
-
-- Implementación de interfaz gráfica (JavaFX o Swing)
-- Cifrado de contraseñas con `BCrypt`
-- Listado de pedidos por usuario
-- API REST con Spring Boot
 
 ---
