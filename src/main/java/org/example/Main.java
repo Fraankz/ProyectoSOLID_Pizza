@@ -6,6 +6,7 @@ public class Main {
         DataBaseManager db = new DataBaseManager();
         db.connect();
 
+
         // 2. Crear el autenticador con la conexión de db
         Authenticator auth = new Authenticator(db.getConnection());
 

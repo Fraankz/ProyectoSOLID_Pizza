@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DataBaseManager {
     private Connection connection;
@@ -27,6 +24,30 @@ public class DataBaseManager {
     public Connection getConnection() {
         return connection;
     }
+
+    public void listarPedidosPorUsuario(int userId) {
+        String sql = "SELECT id, description, amount, created_at FROM orders WHERE user_id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("📦 Pedidos del usuario ID: " + userId);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String descripcion = rs.getString("description");
+                double precio = rs.getDouble("amount");
+                String fecha = rs.getString("created_at");
+
+                System.out.printf("🧾 Pedido #%d | %s | %.2f € | %s%n", id, descripcion, precio, fecha);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al listar los pedidos:");
+            e.printStackTrace();
+        }
+    }
+
 
     // ✅ Método para crear un pedido
     public void createOrder(int userId, String description, double amount) {
